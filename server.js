@@ -1,8 +1,8 @@
 const express = require('express');
 // Import module for handling the database connection from db\connection.js
-const db = require('./db/connection');
+const db = require('./config/connection');
 // Import all API Routes
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('./routes/api');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
