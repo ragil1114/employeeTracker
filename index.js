@@ -13,7 +13,6 @@ const db = mysql.createConnection(
       password: process.env.DB_PW,
       database: process.env.DB_NAME
     },
-    // console.log('Connected to the election database.')
 );
 
 db.connect((err) => {if(err){return err}else{console.log('Connected to the database.')}});
@@ -59,6 +58,7 @@ function showOptions() {
         });
 }
 
+/*
 function viewAllEmployees() {
     db.findAllEmployees()
         .then(function (employees) {
@@ -68,5 +68,6 @@ function viewAllEmployees() {
 }
     
 initialize()
+*/
 
 module.exports = db;
