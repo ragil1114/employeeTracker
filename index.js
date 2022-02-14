@@ -54,7 +54,6 @@ function showOptions() {
                     addRole();
                     break;
             }
-            showOptions();
         });
 }
 
