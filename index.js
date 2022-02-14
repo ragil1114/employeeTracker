@@ -58,7 +58,6 @@ function showOptions() {
         });
 }
 
-/*
 function viewAllEmployees() {
     db.findAllEmployees()
         .then(function (employees) {
@@ -67,7 +66,6 @@ function viewAllEmployees() {
         .then(()=> showOptions())
 }
     
-initialize()
-*/
+//initialize();
 
 module.exports = db;
