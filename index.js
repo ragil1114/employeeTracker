@@ -59,4 +59,14 @@ function showOptions() {
         });
 }
 
+function viewAllEmployees() {
+    db.findAllEmployees()
+        .then(function (employees) {
+            console.log('employees:', employees);
+        })
+        .then(()=> showOptions())
+}
+    
+initialize()
+
 module.exports = db;
