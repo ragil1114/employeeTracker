@@ -16,6 +16,8 @@ const db = mysql.createConnection(
     // console.log('Connected to the election database.')
 );
 
+db.connect((err) => {if(err){return err}else{console.log('Connected to the database.')}});
+
 function showOptions() {
     inquirer
         .prompt([
