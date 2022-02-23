@@ -1,21 +1,14 @@
 // import MySQL2 module
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-require('dotenv').config();
+const db = require('./db');
 
-// Connect to database
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // Your MySQL username,
-      user: process.env.DB_USER,
-      // Your MySQL password
-      password: process.env.DB_PW,
-      database: process.env.DB_NAME
-    },
-);
+initialize();
 
-db.connect((err) => {if(err){return err}else{console.log('Connected to the database.')}});
+function initialize() {
+    console.log('Welcome to the Employee Tracker!');
+    showOptions();
+}
 
 function showOptions() {
     inquirer
@@ -65,7 +58,3 @@ function viewAllEmployees() {
         })
         .then(()=> showOptions())
 }
-    
-//initialize();
-
-module.exports = db;
