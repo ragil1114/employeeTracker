@@ -1,9 +1,11 @@
-INSERT INTO department (id, name)
+USE CMS_db;
+
+INSERT INTO department (name)
 VALUES
-  (1, 'Engineering'),
-  (2, 'Marketing'),
-  (3, 'Sales'),
-  (4, 'Human Resources');
+  ('Engineering'),
+  ('Marketing'),
+  ('Sales'),
+  ('Human Resources');
 
 INSERT INTO role (title, salary, department_id)
 VALUES
@@ -24,5 +26,5 @@ VALUES
   ('Mike', 'Williams', 4, 2),
   ('John', 'Brown', 4, 2),
   ('Don', 'Davis', 4, 2),
-  ('Mike', 'Miller', 4, 2),
+  ('Mike', 'Miller', 4, 2);
 

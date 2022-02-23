@@ -10,9 +10,9 @@ const connection = mysql.createConnection(
       // Your MySQL password
       password: process.env.DB_PW,
       database: process.env.DB_NAME
-    },
+    }
 );
 
-connection.connect((err) => {if(err){return err}else{console.log('Connected to the database.')}});
+connection.connect((err) =>{if(err) throw err;});
 
 module.exports = connection;

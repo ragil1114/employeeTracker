@@ -1,7 +1,7 @@
-// import MySQL2 module
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const db = require('./db');
+require('console.table')
+
 
 initialize();
 
@@ -53,8 +53,10 @@ function showOptions() {
 
 function viewAllEmployees() {
     db.findAllEmployees()
-        .then(function (employees) {
-            console.log('employees:', employees);
+        .then(([rows])=> {
+            let employees = rows
+            console.log('\n');
+            console.table(employees);
         })
         .then(()=> showOptions())
 }
