@@ -30,7 +30,7 @@ function showOptions() {
         .then(function (answer) {
             switch (answer.option) {
                 case 'View all employees':
-                    viewEmployees();
+                    viewAllEmployees();
                     break;
                 case 'View all departments':
                     viewDepartments();
