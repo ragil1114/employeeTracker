@@ -23,7 +23,8 @@ function showOptions() {
                     'View all roles',
                     'Add an employee',
                     'Add a department',
-                    'Add a role'
+                    'Add a role',
+                    'Update an employee role'
                 ]
             }
         ])
@@ -47,6 +48,9 @@ function showOptions() {
                     break;
                 case 'Add a role':
                     addRole();
+                    break;
+                case 'Update an employee role':
+                    updateRole();
                     break;
             }
         });
@@ -168,7 +172,7 @@ function updateRole() {
         .prompt([
             {
                 type: 'input',
-                name: 'id',
+                name: 'role_id',
                 message: 'What is the ID of the role you would like to update?'
             },
             {
