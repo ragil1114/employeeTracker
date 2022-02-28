@@ -30,3 +30,7 @@ GitHub:
 https://github.com/ragil1114/employeeTracker.git
 
 Screencastify:
+
+
+### Screenshots
+![demo](https://github.com/ragil1114/employeeTracker/blob/main/assets/images/demo.png)
