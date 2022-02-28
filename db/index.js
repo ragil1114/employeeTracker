@@ -29,6 +29,9 @@ class DB {
     findRoleByID(id){
         return this.connection.promise().query ("SELECT * FROM role WHERE id = ?;", id);
     }
+    updateRole(id, role){
+        return this.connection.promise().query ("UPDATE role SET ? WHERE id = ?;", [role, id]);
+    }
 }
 
 module.exports = new DB(connection);
