@@ -6,10 +6,10 @@ const connection = mysql.createConnection(
     {
       host: 'localhost',
       // Your MySQL username,
-      user: process.env.DB_USER,
+      user: 'root',
       // Your MySQL password
-      password: process.env.DB_PW,
-      database: process.env.DB_NAME
+      password: '@Rag$-2-Riche$_._14176157!',
+      database: 'CMS_db'
     }
 );
 
