@@ -28,6 +28,7 @@ function showOptions() {
             }
         ])
         .then(function (answer) {
+            // console.log(answer);
             switch (answer.option) {
                 case 'View all employees':
                     viewAllEmployees();
@@ -58,5 +59,138 @@ function viewAllEmployees() {
             console.log('\n');
             console.table(employees);
         })
-        .then(()=> showOptions())
+        .then(()=> {showOptions()})
+}
+
+function viewDepartments() {
+    db.findAllDepartments()
+        .then(([rows])=> {
+            let departments = rows
+            console.log('\n');
+            console.table(departments);
+        })
+        .then(()=> {showOptions()})
+}
+
+function viewRoles() {
+    db.findAllRoles()
+        .then(([rows])=> {
+            let roles = rows
+            console.log('\n');
+            console.table(roles);
+        })
+        .then(()=> {showOptions()})
+}
+
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'first_name',
+                message: `What is the employee's first name?`
+            },
+            {
+                type: 'input',
+                name: 'last_name',
+                message: `What is the employee's last name?`
+            },
+            {
+                type: 'input',
+                name: 'role_id',
+                message: `What is the employee's role ID?`
+            },
+            {
+                type: 'input',
+                name: 'manager_id',
+                message: `What is the manager's ID for this employee?`
+            }
+        ])
+        .then(function (answer) {
+            db.createEmployee(answer)
+                console.log('\n');
+                console.log(`${answer.first_name} ${answer.last_name} was added to the database.`);
+        })
+        .then(() => {
+            console.log('\n');
+            showOptions();
+        })
+}
+
+function addDepartment() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is the name of the department?'
+            }
+        ])
+        .then(function (answer) {
+            db.createDepartment(answer)
+                .then(([rows])=> {
+                    let departments = rows
+                    console.log('\n');
+                    console.table(departments);
+                })
+                .then(() => {showOptions()})
+        })
+}
+
+function addRole() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'title',
+                message: 'What is the title of the role?'
+            },
+            {
+                type: 'input',
+                name: 'salary',
+                message: 'How much is the salary?'
+            },
+            {
+                type: 'input',
+                name: 'department_id',
+                message: 'What is the department ID?'
+            }])
+        .then(function (answer) {
+            db.createRole(answer)
+            console.log('/n');
+            console.log(`You added a new role called: ${answer.title}`)
+        })
+        .then(() => {showOptions()})
+}
+
+function updateRole() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'id',
+                message: 'What is the ID of the role you would like to update?'
+            },
+            {
+                type: 'input',
+                name: 'title',
+                message: 'What is the new title of the role?'
+            },
+            {
+                type: 'input',
+                name: 'salary',
+                message: 'What is the new salary of the role?'
+            },
+            {
+                type: 'input',
+                name: 'department_id',
+                message: 'What is the new department ID?'
+            }
+        ])
+        .then(function (answer) {
+            db.updateRole(answer)
+            console.log('\n');
+            console.log(`You updated the role with ID: ${answer.id}`)
+        })
+        .then(() => {showOptions()})
 }
