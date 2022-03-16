@@ -111,13 +111,9 @@ function addEmployee() {
             }
         ])
         .then(function (answer) {
-            db.createEmployee(answer)
+            db.createEmployee(answer).then(() => showOptions())
                 console.log('\n');
                 console.log(`${answer.first_name} ${answer.last_name} was added to the database.`);
-        })
-        .then(() => {
-            console.log('\n');
-            showOptions();
         })
 }
 
@@ -160,41 +156,45 @@ function addRole() {
                 message: 'What is the department ID?'
             }])
         .then(function (answer) {
-            db.createRole(answer)
+            db.createRole(answer).then(() => {showOptions()})
             console.log('/n');
             console.log(`You added a new role called: ${answer.title}`)
         })
-        .then(() => {showOptions()})
 }
 
 function updateRole() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'role_id',
-                message: 'What is the ID of the role you would like to update?'
-            },
-            {
-                type: 'input',
-                name: 'title',
-                message: 'What is the new title of the role?'
-            },
-            {
-                type: 'input',
-                name: 'salary',
-                message: 'What is the new salary of the role?'
-            },
-            {
-                type: 'input',
-                name: 'department_id',
-                message: 'What is the new department ID?'
-            }
-        ])
-        .then(function (answer) {
-            db.updateRole(answer)
-            console.log('\n');
-            console.log(`You updated the role with ID: ${answer.id}`)
+    db.findAllEmployees()
+    .then(([rows])=> {
+        let employees = rows;
+        const employeeOptions = employees.map(({
+            id,
+            first_name,
+            last_name}) => ({name: `${first_name} ${last_name}`, value: id}))
+    inquirer.prompt([{
+        type:'list',
+        name:'employeeId',
+        message: 'Which employee would you like to update?',
+        choices: employeeOptions
+    }])
+    .then(res => {
+        let employeeId = res.employeeId;
+        db.findAllRoles()
+        .then(([rows])=> {
+            let roles = rows;
+            const roleOptions = roles.map(({
+                id,
+                title
+            })=> ({name: title, value: id}));
+            inquirer.prompt([{
+                type:'list',
+                name:'roleId',
+                message: 'Which role would you like to assign?',
+                choices: roleOptions
+            }])
+            .then(res => db.updateRole(employeeId, res.roleId))
+            .then(() => showOptions())
         })
-        .then(() => {showOptions()})
+    })
+ })
+     
 }
