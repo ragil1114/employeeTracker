@@ -29,5 +29,8 @@
 GitHub:
 https://github.com/ragil1114/employeeTracker.git
 
+Screencastify:
+https://drive.google.com/file/d/1yNVEkQIdnCwf6qYyiT80XIB20D0LJV07/view
+
 ### Screenshots
 ![demo](https://github.com/ragil1114/employeeTracker/blob/main/assets/images/demo.png)
